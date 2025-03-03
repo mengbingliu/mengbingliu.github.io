@@ -12,29 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11' # Specify the Python version you need for your project
-
-      - name: Install dependencies
+      - name: Install Reqs
         run: |
-          python -m pip install --upgrade pip
-          pip install -r ./google_scholar_crawler/requirements.txt
-
-      - name: Run Script
+          sudo apt-get install python3-setuptools
+      - name: Run
         run: |
-          python ./google_scholar_crawler/main.py
-        env:
-          GOOGLE_SCHOLAR_ID: ABMEJV8AAAAJ
-
-      - name: Commit and Push Results
-        run: |
+          cd ./google_scholar_crawler
+          pip3 install -r requirements.txt
+          python3 main.py
           cd ./results
           git init
           git config --local user.name "${GITHUB_ACTOR}"
-          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git add *.json
           git commit -m "Updated Citation Data."
-          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD:google-scholar-stats --force
+          git push "${remote_repo}" HEAD:google-scholar-stats --force
+        env:
+          GOOGLE_SCHOLAR_ID: ABMEJV8AAAAJ
