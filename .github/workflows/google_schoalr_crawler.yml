@@ -2,7 +2,7 @@ name: Get Citation Data
 
 on:
   push:
-    branches: ["astro-web"]
+    branches: ["master"]
   workflow_dispatch:
   schedule:
     - cron: "0 8 * * *"
