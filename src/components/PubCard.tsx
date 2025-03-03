@@ -71,7 +71,7 @@ export default function PubCard({ href, frontmatter, secHeading = true }: PubCar
 
     const showGoogleCitations = () => {
         if (paper_id == "") return null;
-        let citation_url = "https://img.shields.io/endpoint?logo=Google%20Scholar&url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FLiXin97%2Flixin97.github.io@google-scholar-stats%2Fgs_data_Hxf8sNkAAAAJ:" + paper_id + ".json&labelColor=f6f6f6&color=9cf&style=flat&label=citations";
+        let citation_url = "https://img.shields.io/endpoint?logo=Google%20Scholar&url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmengbingliu%2Fmengbingliu.github.io@google-scholar-stats%2Fgs_data_ABMEJV8AAAAJ:" + paper_id + ".json&labelColor=f6f6f6&color=9cf&style=flat&label=citations";
         return (
             <a href="https://scholar.google.com/citations?user=ABMEJV8AAAAJ&hl" className="inline-block align-middle">
                 <img src={citation_url} alt="Google Scholar Citations" />
