@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import TagPosts from "@layouts/TagPosts.astro";
+import getPubsByTag from "@utils/getPubsByTag";
+import getPagination from "@utils/getPagination";
+import getUniquePubTags from "@utils/getUniquePubTags";
+import getSortedPubsYears from "@utils/getSortedPubsYears";
+
+
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import { SITE } from "@config";
+import PubCard from "@components/PubCard";
+
+export async function getStaticPaths() {
+  const pubs = await getCollection("pub");
+
+  const tags = getUniquePubTags(pubs);
+
+  return tags.map(({ tag, tagName }) => {
+    return {
+      params: { tag },
+      props: { tag, tagName, pubs },
+    };
+  });
+}
+
+const { tag, tagName, pubs } = Astro.props;
+
+const pubsByTag = getPubsByTag(pubs, tag);
+
+const { pubs_sort, unique_years } = getSortedPubsYears(pubsByTag);
+
+---
+
+
+<Layout title={`Pubs | ${SITE.title}`} currentPage="pubs">
+  <Header activeNav="pubs" />
+  <Main pageTitle="Publications" pageDesc={`All the papers I've published with the tag ${tagName}.`}>
+
+
+    <ul>
+      {
+        unique_years.map(year => (
+          <div>
+            <h2 class="mb-4 mt-8 text-lg font-bold">{year}</h2>
+            {pubs_sort
+              .filter(({ data }) => data.published_year === year)
+              .map(({ data, slug }) => (
+                <PubCard href={`/pubs/${slug}/`} frontmatter={data} />
+              ))}
+          </div>
+        ))
+      }
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

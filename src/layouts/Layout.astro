@@ -1,0 +1,225 @@
+---
+import { LOCALE, SITE } from "@config";
+import "@styles/base.css";
+import "katex/dist/katex.min.css";
+import { ViewTransitions } from "astro:transitions";
+
+export interface Props {
+  currentPage?: "pubs" | "posts" | "search" | "about" | "posts_detail";
+}
+
+const { currentPage } = Astro.props;
+
+export interface Props {
+  title?: string;
+  author?: string;
+  profile?: string;
+  description?: string;
+  ogImage?: string;
+  ogTag?: string;
+  canonicalURL?: string;
+  pubDatetime?: Date;
+  modDatetime?: Date | null;
+  scrollSmooth?: boolean;
+}
+
+const {
+  title = SITE.title,
+  author = SITE.author,
+  profile = SITE.profile,
+  description = SITE.desc,
+  ogImage = SITE.ogImage,
+  ogTag = SITE.ogTag,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  pubDatetime,
+  modDatetime,
+  scrollSmooth = false,
+} = Astro.props;
+
+const socialImageURL = new URL(
+  ogImage ?? SITE.ogImage ?? "og.png",
+  Astro.url.origin
+).href;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: `${title}`,
+  image: `${socialImageURL}`,
+  datePublished: `${pubDatetime?.toISOString()}`,
+  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
+  author: [
+    {
+      "@type": "Person",
+      name: `${author}`,
+      url: `${profile}`,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html
+  lang=`${LOCALE.lang ?? "en"}`
+  class={`${scrollSmooth && "scroll-smooth"}`}
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- General Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <meta name="keywords" content={SITE.ogTag} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <meta property="og:author" content={author} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:category" content="Personal Homepage" />
+    <meta property="og:tag" content={ogTag} />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:site_name" content={title} />
+
+    <!-- Article Published/Modified time -->
+    {
+      pubDatetime && (
+        <meta
+          property="article:published_time"
+          content={pubDatetime.toISOString()}
+        />
+      )
+    }
+    {
+      modDatetime && (
+        <meta
+          property="article:modified_time"
+          content={modDatetime.toISOString()}
+        />
+      )
+    }
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+
+    {
+      currentPage === "about" && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "http://schema.org",
+            "@type": "ProfilePage",
+            "@dateCreated":"2024-04-05T14:53:00+08:00",
+            "@dateModified": "2024-08-03T14:21:00-05:00",
+            mainEntity: {
+              "@type": "Person",
+              name: "Xin Li",
+              alternateName: "李鑫",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Singapore",
+                addressRegion: "SG",
+                postalCode: "639798",
+                streetAddress: "50 Nanyang Avenue",
+              },
+              url: "https://lixin.ai/",
+              image: "https://lixin.ai/images/XinLi.png",
+              jobTitle: "Research Assistant",
+              description:
+                "Research Assistant at Nanyang Technological University (NTU), Singapore. Research Interest: SLAM, Embodied AI, LLM.",
+              familyName: "Li",
+              givenName: "Xin",
+              birthDate: "1997-10-27",
+              email: "li-x@ntu.edu.sg",
+              mainEntityOfPage: "https://lixin.ai/",
+              colleague: {
+                "@type": "Person",
+                name: "Prof. Chau Yuen",
+                affiliation: "Nanyang Technological University",
+                url: "https://blogs.ntu.edu.sg/chau-yuen",
+              },
+              worksFor: {
+                "@type": "Organization",
+                name: "Nanyang Technological University",
+                url: "https://www.ntu.edu.sg/",
+              },
+              alumniOf: [
+                {
+                  "@type": "CollegeOrUniversity",
+                  name: "Nanyang Technological University",
+                  url: "https://www.ntu.edu.sg/",
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  name: "Peking University",
+                  url: "http://english.pku.edu.cn",
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  name: "Northeastern University",
+                  url: "https://www.neuq.edu.cn/",
+                },
+                {
+                  "@type": "Organization",
+                  name: "Microsoft Research Asia",
+                  url: "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
+                },
+              ],
+              sameAs: [
+                "https://lixin.ai/",
+                "https://github.com/LiXin97",
+                "https://lixin97.github.io/",
+                "https://twitter.com/XinLi72542893",
+                "https://www.linkedin.com/in/xin-li-1196331a0",
+                "https://scholar.google.com/citations?hl=en&user=Hxf8sNkAAAAJ",
+              ],
+            },
+          })}
+        />
+      )
+    }
+
+    <!-- Google JSON-LD Structured data -->
+
+    {
+      currentPage === "posts_detail" && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(structuredData)}
+        />
+      )
+    }
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="" />
+
+    <ViewTransitions />
+
+    <script is:inline src="/toggle-theme.js"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Tag from "@components/Tag.astro";
+import PubCard from "@components/PubCard";
+import getSortedPubs from "@utils/getSortedPubs";
+import getSortedPubsYears from "@utils/getSortedPubsYears";
+import getUniquePubTags from "@utils/getUniquePubTags";
+import getPagination from "@utils/getPagination";
+import { SITE } from "@config";
+
+const pubs = await getCollection("pub");
+const { pubs_sort, unique_years } = getSortedPubsYears(pubs);
+const tags = getUniquePubTags(pubs_sort);
+---
+
+<Layout title={`Pubs | ${SITE.title}`} currentPage="pubs">
+  <Header activeNav="pubs" />
+  <Main pageTitle="Publications" pageDesc="All the papers I've published.">
+    <a class="mb-4 mt-8 text-lg font-bold hover:text-skin-accent focus-visible:p-1" href="/pubs/tags/">Tags: </a>
+
+    <ul>
+      {tags.map(({ tag }) => <Tag {tag} size="sm" type="pubs" />)}
+    </ul>
+
+    <ul>
+      {
+        unique_years.map(year => (
+          <div>
+            <h2 class="mb-4 mt-8 text-lg font-bold">{year}</h2>
+            {pubs_sort
+              .filter(({ data }) => data.published_year === year)
+              .map(({ data, slug }) => (
+                <PubCard client:visible href={`/pubs/${slug}/`} frontmatter={data} />
+              ))}
+          </div>
+        ))
+      }
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

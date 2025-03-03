@@ -1,0 +1,491 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import getSortedPubs from "@utils/getSortedPubs";
+import LinkButton from "@components/LinkButton.astro";
+import Hr from "@components/Hr.astro";
+import PubCard from "@components/PubCard";
+import PubCardMini from "@components/PubCardMini";
+import MiniPubSection from "@components/MiniPubSection";
+import Socials from "@components/Socials.astro";
+import getSortedPosts from "@utils/getSortedPosts";
+import { SITE, SOCIALS } from "@config";
+
+const posts = await getCollection("blog");
+const pubs = await getCollection("pub");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+
+const sortedPubs = getSortedPubs(pubs);
+const featuredPubs = sortedPubs.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const socialCount = SOCIALS.filter(social => social.active).length;
+
+interface NewsItem {
+  date: string;
+  content: string;
+  isHighlight?: boolean;
+  link?: string;
+}
+
+const newsItems: NewsItem[] = [
+  {
+    date: "2025.03",
+    content: "One paper accepted by ICLR 2025 ML4RS Workshop.",
+    // link: "https://arxiv.org/abs/2004.11969",
+    // isHighlight: true,
+  },
+  {
+    date: "2024.10",
+    content: "IEEE student travel grant (1500 USD).",
+    isHighlight: true,
+    // link: "https://scholar.google.com/citations?user=Hxf8sNkAAAAJ",
+  }, 
+  {
+    date: "2024.09",
+    content:
+      "One paper accepted by IEEE Middle East Conference on Communications and Networking (MECOM), 2024.",
+    // link: "https://indoorradiomapchallenge.github.io/results.html",
+  },
+  {
+    date: "2024.01",
+    content: "Joined Nanyang Technological University as a PhD student.",
+    // link: "https://www.ntu.edu.sg"
+  },
+];
+
+// <body itemscope="itemscope" itemtype="http://schema.org/ProfilePage">
+//   <div itemprop="mainEntity" itemtype="http://schema.org/Person" itemscope>
+//       <meta itemprop="name" content="Xin Li (李鑫)">
+//       <meta itemprop="alternateName" content="Xin Li, 李鑫">
+//       <meta itemprop="image" content="https://lixin.ai/images/XinLi.png">
+//       <meta itemprop="description"
+//           content="Research Assistant at Nanyang Technological University (NTU), Singapore. Research Interest: SLAM, Embodied AI, LLM">
+//       <meta itemprop="familyName" content="Li">
+//       <meta itemprop="givenName" content="Xin">
+//       <meta itemprop="birthDate" content="1997-10-27">
+//       <meta itemprop="jobTitle" content="Research Assistant">
+//       <div itemprop="affiliation" itemscope itemtype="http://schema.org/EducationalOrganization">
+//           <meta itemprop="name" content="Nanyang Technological University (NTU)">
+//           <link itemprop="url" href="https://www.ntu.edu.sg/">
+//       </div>
+//       <div itemprop="colleague" itemscope itemtype="http://schema.org/Person">
+//           <meta itemprop="name" content="Prof. Chau Yuen">
+//           <link itemprop="url" href="https://blogs.ntu.edu.sg/chau-yuen">
+//       </div>
+//       <div itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization">
+//           <meta itemprop="name" content="Peking University">
+//           <link itemprop="url" href="http://english.pku.edu.cn">
+//       </div>
+//       <div itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization">
+//           <meta itemprop="name" content="Northeastern University (CN)">
+//           <link itemprop="url" href="https://www.neuq.edu.cn/">
+//       </div>
+//       <div itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization">
+//           <meta itemprop="name" content="Nanyang Technological University">
+//           <link itemprop="url" href="https://www.ntu.edu.sg/">
+//       </div>
+//       <div itemprop="alumniOf" itemscope itemtype="http://schema.org/Organization">
+//           <meta itemprop="name" content="Microsoft Research Asia">
+//           <link itemprop="url"
+//               href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">
+//       </div>
+//       <meta itemprop="email" content="lixin.1997.lixin@gmail.com">
+//       <meta itemprop="sameAs" content="https://github.com/LiXin97">
+//       <meta itemprop="sameAs" content="https://scholar.google.com/citations?hl=en&user=Hxf8sNkAAAAJ">
+//       <meta itemprop="sameAs" content="https://twitter.com/XinLi72542893">
+//       <meta itemprop="sameAs" content="https://www.linkedin.com/in/xin-li-1196331a0">
+//       <meta itemprop="sameAs" content="https://lixin.ai/">
+//   </div>
+// </body>
+---
+
+<Layout currentPage="about">
+  <Header />
+
+  <main id="main-content">
+    <section id="hero">
+      <h1>Mengbing Liu (刘梦冰)</h1>
+
+      <img
+        src="/images/mengbing2.png"
+        alt="Profile photo of Mengbing Liu"
+        itemprop="image"
+        style="width: 20%; border-radius: 50%; float: right;"
+      />
+
+      <p>
+        I am currently a second-year Ph.D. student at
+        <!-- I currently work as a Research Assistant at -->
+        <LinkButton
+          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          href="https://www.ntu.edu.sg/"
+          >Nanyang Technological University (NTU)
+        </LinkButton>, Singapore, under the supervision of
+        <LinkButton
+          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          href="https://blogs.ntu.edu.sg/chau-yuen/"
+          >Prof. Chau Yuen
+        </LinkButton>.
+      </p>
+      <p>
+        I obtained my Master's degree from
+        <LinkButton
+          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          href="https://en.ustc.edu.cn/"
+          >University of Science and Technology of China (CN)
+        </LinkButton> and Bachelor's degree from
+        <LinkButton
+          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
+          href="https://www.neuq.edu.cn/"
+          >Northeastern University (CN)
+        </LinkButton>.
+      </p>
+      <!-- <p>
+        I am passionate about developing algorithms that enable robots to
+        understand the world around them.
+      </p> -->
+
+      <br />
+      <p>
+        Email:
+        <a
+          href="mailto:mengbing001@e.ntu.edu.sg"
+          class="underline hover:text-skin-accent"
+        >
+        mengbing001@e.ntu.edu.sg</a>
+
+        &nbsp;
+
+        <!-- <a
+          href="mailto:lixin.1997.lixin@gmail.com"
+          class="underline hover:text-skin-accent"
+        >
+        lixin.1997.lixin@gmail.com</a> -->
+      </p>
+
+
+      {
+        // only display if at least one social link is enabled
+        socialCount > 0 && (
+          <div class="social-wrapper">
+            <div class="social-links">Links:</div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    <Hr />
+
+    <section id="news" class="w-full">
+      <div class="mb-4 flex items-center gap-2">
+        <h2 class="pb-6 pt-6 text-2xl font-semibold tracking-wide">News</h2>
+        <!-- <span class="text-sm text-gray-500 pt-6">
+          ({newsItems.length} updates)
+        </span> -->
+      </div>
+
+      <div class="max-h-96 overflow-auto">
+        <ul class="divide-y">
+          {
+            newsItems.map((item, index) => (
+              <li
+                class:list={[
+                  "p-2 transition-colors",
+                  // "p-4 hover:bg-gray-50 transition-colors",
+                  // { "bg-gradient-to-r from-purple-50 to-transparent": item.isHighlight }
+                ]}
+              >
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-start">
+                  <div class="shrink-0 sm:w-32">
+                    <span class="text-sm font-semibold">{item.date}</span>
+                  </div>
+
+                  <div class="flex-1">
+                    <div class="flex flex-wrap items-start gap-2">
+                      <span class="text-sm">
+                        {item.isHighlight && "🎉 "}
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            class="hover:text-skin-accent"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.content}
+                          </a>
+                        ) : (
+                          item.content
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <Hr />
+
+    {
+      featuredPubs.length > 0 && (
+        <>
+          <section id="pubs">
+            <h2>Publications</h2>
+            <p>
+              Here are some of the papers I've published. You can also find them
+              on{" "}
+              <a
+                class="underline hover:text-skin-accent"
+                href="https://scholar.google.com/citations?user=ABMEJV8AAAAJ&hl=zh-CN"
+              >
+                Google Scholar
+              </a>
+              {/* .<small>(* equal contribution)</small> <br /> */}
+            </p>
+
+            {/* /* gap between the list and the button */}
+            {/* 
+            <div class="mb-4" />
+            {
+              <ul>
+                {featuredPubs.map(({ data, slug }) => (
+                  <MiniPubCard href={`/pubs/${slug}/`} frontmatter={data} />
+                ))}
+              </ul>
+            } */}
+            {
+              <ul max-h-96 overflow-auto class="divide-y">
+                {featuredPubs.map(({ data, slug }) => (
+                  <PubCard client:visible href={`/pubs/${slug}/`} frontmatter={data} />
+                ))}
+              </ul>
+            }
+          </section>
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+    <Hr />
+
+    {
+      (
+        <>
+          <section id="profession">
+            <h2>Education</h2>
+            <table style="width: 100%;">
+              <tr>
+                <th rowspan="2">Ph.D.</th>
+                <td>
+                  <LinkButton
+                    className="underline hover:text-skin-accent"
+                    href="http://ntu.edu.sg"
+                  >
+                    Nanyang Technological University (Singapore)
+                  </LinkButton>
+                </td>
+                <td>2024.01 - Present</td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <span style="color: #888; font-style: italic; font-size: 0.8rem;">
+                    Supervisor:{" "}
+                    <LinkButton
+                      className="underline hover:text-skin-accent"
+                      href="https://blogs.ntu.edu.sg/chau-yuen/"
+                    >
+                      Prof. Chau Yuen
+                    </LinkButton>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3">
+                  <hr />
+                </td>
+              </tr>
+              <tr>
+                <th rowspan="2">M.Eng.</th>
+                <td>
+                  <LinkButton
+                    className="underline hover:text-skin-accent"
+                    href="https://en.ustc.edu.cn/"
+                  >
+                     University of Science and Technology of China (CN)
+                  </LinkButton>
+                </td>
+                <td>2018.09 - 2021.07</td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <span style="color: #888; font-style: italic; font-size: 0.8rem;">
+                    {/* Thesis: */}
+
+                    Supervisor:{" "}
+                    <LinkButton
+                      className="underline hover:text-skin-accent"
+                      href="https://faculty.ustc.edu.cn/qiuling/zh_CN/index.htm"
+                    >
+                      Prof. Ling Qiu (邱玲)
+                    </LinkButton>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3">
+                  <hr />
+                </td>
+              </tr>
+
+              <tr>
+                <th>B.Eng.</th>
+                <td>
+                  <LinkButton
+                    className="underline hover:text-skin-accent"
+                    href="https://www.neuq.edu.cn/"
+                  >
+                    Northeastern University (CN)
+                  </LinkButton>
+                </td>
+                <td>2014.09 - 2018.07</td>
+              </tr>
+            </table>
+          </section>
+          <Hr />
+        </>
+      )
+    }
+
+    {
+      (
+        <>
+          <section id="profession">
+            <h2>Experience</h2>
+
+            <table
+              style="width: 100%; margin-right: auto; margin-left: auto;"
+              border="1"
+            >
+              <tr>
+                <th rowspan="3">Research Assistant</th>
+                <td>Singapore University of Technology and Design</td>
+                <td>2021.09 - 2023.12</td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2">
+                  <span style="color: #888; font-style: italic; font-size: 0.8rem;">
+                    Supervised by{" "}
+                    <LinkButton
+                      className="underline hover:text-skin-accent"
+                      href="https://blogs.ntu.edu.sg/chau-yuen/"
+                    >
+                      Prof. Chau Yuen
+                    </LinkButton>
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3">
+                  <hr />
+                </td>
+              </tr>
+
+               
+            </table>
+          </section>
+          <Hr />
+        </>
+      )
+    }
+
+    {
+      (
+        <>
+          <section id="profession">
+            <h2>Academic Services</h2>
+
+            <p>
+              <b>Reviewer:</b>  IEEE JSAC, IEEE TCCN, IEEE TVT, IEEE WCL, IEEE CL, IEEE System Journal, IEEE VTC-spring (2024,2025), China Communciaiton, IEEE ICC 2024, IEEE WCNC 2024, IEEE WCSP 2023, IEEE GlobalCom (2023, 2024), and so on.
+              <br />
+              <b>TPC Member:</b> Track of Emerging Technologies, 6G and Beyond in IEEE VTC-Spring 2025.
+              <br />
+              <b>Volunteer:</b> IEEE 6G Summit Singapore (2023, 2024), IEEE VTC-Spring 2024.
+            </p>
+
+            {/* <table style="width: 100%;">
+              <tr>
+                <th>Reviewer</th>
+                <td>NeurIPS 2024</td>
+                <td>2024</td>
+              </tr>
+            </table> */}
+          </section>
+          <Hr />
+        </>
+      )
+    }
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== Hero Section ===== */
+  #hero {
+    @apply pb-6 pt-8;
+  }
+  #hero h1 {
+    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+  }
+  #hero .rss-link {
+    @apply mb-6;
+  }
+  #hero .rss-icon {
+    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  }
+  #hero p {
+    @apply my-2;
+  }
+  .social-wrapper {
+    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+  }
+  .social-links {
+    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  }
+
+  /* ===== Featured & Recent Posts Sections ===== */
+  #featured,
+  #news h2,
+  #pubs h2,
+  #profession h2,
+  #recent-posts {
+    @apply pb-6 pt-6;
+  }
+  #news h2,
+  #pubs h2,
+  #profession h2,
+  #featured h2,
+  #recent-posts h2 {
+    @apply text-2xl font-semibold tracking-wide;
+  }
+  .all-posts-btn-wrapper {
+    @apply my-8 text-center;
+  }
+  td,
+  th {
+    text-align: left; /* Aligns text to the left */
+  }
+</style>
