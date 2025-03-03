@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://liumengbing.com/", // replace this with your deployed domain
   author: "Mengbing Liu",
   profile: "https://liumengbing.com/",
-  desc: "Mengbing Liu's Homepage, Research Assistant at Nanyang Technological University (NTU), Singapore. Research Interest: SLAM, Embodied AI, and LLM.",
+  desc: "Mengbing Liu's Homepage, PhD student at Nanyang Technological University (NTU), Singapore. Research Interest: Wireless Communciaiton, RIS, SIM and Deep Learning.",
   title: "Mengbing Liu | Homepage",
   ogImage: "/images/mengbing2.png",
   ogTag: "Mengbing Liu, 刘梦冰, Wireless Communication, Deep Learning, RIS, SIM, NTU, Nanyang Technological University, Singapore",
