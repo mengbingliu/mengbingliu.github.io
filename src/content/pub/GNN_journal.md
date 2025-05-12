@@ -14,7 +14,7 @@ authors:
     url: https://blogs.ntu.edu.sg/chau-yuen/
 published_place: IEEE Transactions on Wireless Communication (TWC)
 published_year: 2025
-published_month: 5
+published_month: 4
 tags:
     - Reconfigurable intelligent surface
     - Graph Neural Network
