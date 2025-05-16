@@ -132,7 +132,7 @@ export default function PubCard({ href, frontmatter, secHeading = true }: PubCar
                                     </a>
                                 ) : link.name
                             }
-                            {index === links.length - 1 ? <span> / {showGoogleCitations()} </span> : " / "}
+                            {index === links.length - 1 ? <span> /  </span> : " / "}
                         </span>
                     ))}
                     <button 
