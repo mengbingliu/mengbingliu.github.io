@@ -40,7 +40,7 @@ bibtex:
       }
 homepage: https://ieeexplore.ieee.org/abstract/document/10881273
 links:
-  - name: IEEE Xplore
+  - name: PDF
     url: https://ieeexplore.ieee.org/abstract/document/10881273
   # - name: arXiv
   #   url: https://arxiv.org/abs/2004.11969
