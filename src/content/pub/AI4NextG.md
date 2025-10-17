@@ -1,5 +1,5 @@
 ---
-title: "A Mathematical Modeling Benchmark for LLMs in Wireless Communications"
+title: "LLM Agent Communication Protocol (LACP) Requires Urgent Standardization: A Telecom-Inspired Protocol is Necessary"
 authors:
   - name: Xin Li
     url: https://lixin.ai/
@@ -17,7 +17,7 @@ slug: "LACP: LLM Agent Communication Protocol"
 featured: true
 bibtex:
   |-
-    @article{li2025A,
+    @article{li2025LACP,
       title={LLM Agent Communication Protocol (LACP) Requires Urgent Standardization: A Telecom-Inspired Protocol is Necessary},
       author={Li, Xin and Liu, Mengbing and Yuen, Chau},
       journal={AI4NextG @ NeurIPS 2025},
