@@ -28,12 +28,12 @@ bibtex:
       journal={IEEE Transaction on on Cognitive Communications and Networkingn (TCCN)},
       year = {2025}
       }
-homepage: https://arxiv.org/abs/2505.04970
+homepage: https://ieeexplore.ieee.org/document/11003068
 links:
-  - name: IEEE Xplore
+  # - name: IEEE Xplore
+  #   url: https://ieeexplore.ieee.org/document/11003068
+  - name: arXiv
     url: https://arxiv.org/abs/2505.04970
-  # - name: arXiv
-  #   url: https://arxiv.org/abs/2004.11969
   # - name: video
   #   url: https://www.youtube.com/watch?v=V1KU6V49UKI
   # - name: code

@@ -27,5 +27,5 @@ bibtex:
 homepage: https://lixin.ai/LACP/
 links:
   - name: arXiv
-    url: ""
+    url: https://arxiv.org/pdf/2510.13821
 ---

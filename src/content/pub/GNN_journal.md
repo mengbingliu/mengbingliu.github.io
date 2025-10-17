@@ -30,9 +30,9 @@ bibtex:
       journal={IEEE Transaction on Wireless Communication (TWC)},
       year={2025}
     }
-homepage: https://liumengbing.com/
+homepage: https://ieeexplore.ieee.org/abstract/document/10981536
 links:
   - name: arXiv
-    url: https://liumengbing.com/
+    url: https://arxiv.org/pdf/2504.14464
 og_image: /pubs/Robust-GSSLAM/overview.png
 ---

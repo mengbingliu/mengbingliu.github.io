@@ -34,7 +34,7 @@ homepage: https://ieeexplore.ieee.org/abstract/document/10278986
 links:
   - name: arXiv
     url: https://arxiv.org/pdf/2302.04183
-  - name: IEEE Xplore
-    url: https://ieeexplore.ieee.org/abstract/document/10278986
+  # - name: IEEE Xplore
+  #   url: https://ieeexplore.ieee.org/abstract/document/10278986
 og_image: /pubs/Robust-GSSLAM/overview.png
 ---

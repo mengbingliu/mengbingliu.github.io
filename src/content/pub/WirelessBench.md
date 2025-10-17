@@ -33,5 +33,5 @@ bibtex:
 homepage: https://lixin.ai/WirelessMathBench/
 links:
   - name: arXiv
-    url: https://lixin.ai/WirelessMathBench/
+    url: https://arxiv.org/abs/2505.14354
 ---
