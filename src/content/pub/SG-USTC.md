@@ -6,7 +6,7 @@ authors:
     url: ""
   - name: Xiaowen Liang
     url: ""
-published_place: Journal of University of Chinese Academy of Sciences)
+published_place: Journal of University of Chinese Academy of Sciences
 published_year: 2022
 tags:
     - Stochastic Geometry
