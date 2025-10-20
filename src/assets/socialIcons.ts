@@ -1,4 +1,28 @@
 const socialIcons = {
+  CV: `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  role="img"
+  aria-label="Curriculum Vitae"
+  class="icon-tabler"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- file with folded corner -->
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" />
+
+  <!-- smaller 'CV' -->
+  <g transform="translate(13.5 12) scale(0.75) translate(-13.5 -12)">
+    <!-- 'C' -->
+    <path d="M12 9h-1a3 3 0 0 0 0 6h1" />
+    <!-- 'V' -->
+    <path d="M14 9l2 6l2-6" />
+  </g>
+</svg>`,
   Github: `<svg
     xmlns="http://www.w3.org/2000/svg"
     class="icon-tabler"

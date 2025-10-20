@@ -28,6 +28,12 @@ export const LOGO_IMAGE = {
 
 export const SOCIALS: SocialObjects = [
   {
+    name: "CV",
+    href: "public/CV_Mengbing.pdf",
+    linkTitle: ` ${SITE.title} CV`,
+    active: true,
+  },
+  {
     name: "Github",
     href: "https://github.com/mengbingliu",
     linkTitle: ` ${SITE.title} on Github`,
