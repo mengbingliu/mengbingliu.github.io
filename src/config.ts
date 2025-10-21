@@ -29,7 +29,7 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
   {
     name: "CV",
-    href: "public/CV_Mengbing.pdf",
+    href: "/CV_Mengbing.pdf",
     linkTitle: ` ${SITE.title} CV`,
     active: true,
   },
