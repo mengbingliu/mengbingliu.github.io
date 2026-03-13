@@ -16,7 +16,7 @@ tags:
     - stacked intelligent metasurface
 paper_id: ""
 title: In-Wave Computation Aided Stacked Intelligent Metasurfaces in Next-Generation Networks: Challenges and Opportunities
-slug: In-Wave_Computation_Aided_Stacked_Intelligent_Metasurfaces_in_Next-Generation_Networks_: _Challenges_and_Opportunities
+slug: In-Wave_Computation_Aided_Stacked_Intelligent_Metasurfaces_in_Next-Generation_Networks_Challenges_and_Opportunities
 featured:  true
 bibtex:
   |-
