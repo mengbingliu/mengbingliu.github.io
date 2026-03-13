@@ -15,17 +15,16 @@ published_year: 2023
 tags:
     - stacked intelligent metasurface
 paper_id: ""
-title: In-Wave Computation Aided Stacked Intelligent Metasurfaces in Next-Generation Networks: Challenges and Opportunities
-slug: In-Wave_Computation_Aided_Stacked_Intelligent_Metasurfaces_in_Next-Generation_Networks_Challenges_and_Opportunities
+title: "In-Wave Computation Aided Stacked Intelligent Metasurfaces in Next-Generation Networks: Challenges and Opportunities"
+slug: in-wave-computation-aided-stacked-intelligent-metasurfaces-in-next-generation-networks-challenges-and-opportunities
 featured:  true
-bibtex:
-  |-
-    @article{liu2026wave,
+bibtex: |-
+  @article{liu2026wave,
     title={In-Wave Computation Aided Stacked Intelligent Metasurfaces in Next-Generation Networks: Challenges and Opportunities},
     author={Liu, Mengbing and Yuen, Chau and Niyato, Dusit and Clerckx, Bruno and Hanzo, Lajos},
     journal={arXiv preprint arXiv:2603.05892},
     year={2026}
-    }
+  }
 homepage: https://arxiv.org/abs/2603.05892
 links:
   # - name: PDF
