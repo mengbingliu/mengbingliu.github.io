@@ -30,7 +30,7 @@ bibtex:
       archivePrefix={arXiv},
       primaryClass={eess.SP},
       url={https://arxiv.org/abs/2609.34333}, 
-}
+       }
 homepage: https://ieeexplore.ieee.org/document/11003068
 links:
   # - name: IEEE Xplore
