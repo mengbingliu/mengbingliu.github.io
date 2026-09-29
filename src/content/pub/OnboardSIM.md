@@ -9,7 +9,7 @@ authors:
     url: ""
   - name: Chau Yuen
     url: https://blogs.ntu.edu.sg/chau-yuen/
-published_place: "ICLR ML4RS Workshop"
+published_place: "ML4RS @ ICLR"
 published_year: 2025
 published_month: 4
 tags:
