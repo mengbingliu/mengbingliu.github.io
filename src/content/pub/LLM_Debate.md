@@ -7,7 +7,7 @@ authors:
     url: https://liumengbing.com/
   - name: Chau Yuen
     url: https://blogs.ntu.edu.sg/chau-yuen/
-published_place: "Neural Information Processing Systems (NeurIPS), 2026"
+published_place: "Neural Information Processing Systems (NeurIPS)"
 published_year: 2026
 published_month: 9
 tags:
